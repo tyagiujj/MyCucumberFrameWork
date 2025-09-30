@@ -112,11 +112,11 @@ public class StepDef {
     	addnewCustp.enterEmail("cs129@gmail.com");
     	//addnewCustp.enterEmail(generateEmailId() + "@gmail.com");
     	addnewCustp.enterPassword("test1");
-    	addnewCustp.enterFirstName("Prachi");
-    	addnewCustp.enterLastName("Gupta");
+    	addnewCustp.enterFirstName("Ujjwal");
+    	addnewCustp.enterLastName("Tyagi");
     	addnewCustp.enterGender("Female");
     	//addnewCustp.enterDob("6/13/1988");
-    	addnewCustp.enterCompanyName("CodeStudio");
+    	addnewCustp.enterCompanyName("Selenium with java");
     	addnewCustp.enterAdminContent("Admin content");
     	addnewCustp.enterManagerOfVendor("Vendor 1");
 
