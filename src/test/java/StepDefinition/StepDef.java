@@ -114,7 +114,7 @@ public class StepDef {
     	addnewCustp.enterPassword("test1");
     	addnewCustp.enterFirstName("Ujjwal");
     	addnewCustp.enterLastName("Tyagi");
-    	addnewCustp.enterGender("Female");
+    	addnewCustp.enterGender("Male");
     	//addnewCustp.enterDob("6/13/1988");
     	addnewCustp.enterCompanyName("Selenium with java");
     	addnewCustp.enterAdminContent("Admin content");
