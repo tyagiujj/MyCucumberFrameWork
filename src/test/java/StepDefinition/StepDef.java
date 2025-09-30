@@ -1,5 +1,6 @@
 package StepDefinition;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -9,6 +10,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import PageObject.AddNewCustomerPage;
 import PageObject.LoginPage;
 
 import java.time.Duration;
@@ -17,6 +19,7 @@ public class StepDef {
     
     public WebDriver driver;
     public LoginPage loginpage;
+    public  AddNewCustomerPage addnewCustp;
     
     @Given("User Launch Chrome browser")
     public void user_launch_chrome_browser() {
@@ -40,7 +43,7 @@ public class StepDef {
     @When("click on login button")
     public void click_on_login_button() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(loginpage.loginButton)); // Wait for button
+       // Wait for button
         loginpage.clickLoginButton();
     }
 
@@ -53,12 +56,92 @@ public class StepDef {
     @When("User Click on Log out Link")
     public void user_click_on_log_out_link() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(loginpage.logout)); // Wait for logout link
-        loginpage.clickLogoutButton();
+      // Wait for logout link
+        loginpage.clickLoginButton();
     }
 
     @Then("close Browser")
     public void close_browser() {
         driver.quit();
     }
+    
+    ///////////////Add new Customer////////////////
+    @Then("User can view Dashboard")
+    public void user_can_view_dashboard() {
+    	 addnewCustp = new AddNewCustomerPage(driver);
+    	String ActualTitle=addnewCustp.getPageTitle();
+    	String expectedTitle="Dashboard / nopCommerce administration";
+    	if(ActualTitle.equalsIgnoreCase(expectedTitle)) {
+    		Assert.assertTrue(true);
+    	}
+    	else {
+    		Assert.assertTrue(false);
+    	}
+    }
+
+
+    @When("User click on customers Menu")
+    public void user_click_on_customers_menu() {
+    	addnewCustp.clickOnCustomersMenu();
+    }
+
+    @When("click on customers Menu Item")
+    public void click_on_customers_menu_item() {
+    	addnewCustp.clickOnCustomersMenuItem();
+    }
+
+    @When("click on Add new Button")
+    public void click_on_add_new_button() {
+    	addnewCustp.clickOnAddnew();
+    }
+
+    @Then("User can view Add new customers page")
+    public void user_can_view_add_new_customers_page() {
+    	String ActualTitle=addnewCustp.getPageTitle();
+    	String expectedTitle="Add a new customer / nopCommerce administration";
+    	if(ActualTitle.equalsIgnoreCase(expectedTitle)) {
+    		Assert.assertTrue(true);
+    	}
+    	else {
+    		Assert.assertTrue(false);
+    	}
+    }
+
+    @When("user enter customer info")
+    public void user_enter_customer_info() {
+    	addnewCustp.enterEmail("cs129@gmail.com");
+    	//addnewCustp.enterEmail(generateEmailId() + "@gmail.com");
+    	addnewCustp.enterPassword("test1");
+    	addnewCustp.enterFirstName("Prachi");
+    	addnewCustp.enterLastName("Gupta");
+    	addnewCustp.enterGender("Female");
+    	//addnewCustp.enterDob("6/13/1988");
+    	addnewCustp.enterCompanyName("CodeStudio");
+    	addnewCustp.enterAdminContent("Admin content");
+    	addnewCustp.enterManagerOfVendor("Vendor 1");
+
+    
+    }
+
+    @When("click on save button")
+    public void click_on_save_button() {
+    	addnewCustp.clickOnSave();
+       
+    }
+
+    @Then("User can view confirmation message {string}")
+    public void user_can_view_confirmation_message(String expectedConfirmationmessage) {
+    	String bodytagText= driver.findElement(By.tagName("Body")).getText();
+    	if(bodytagText.contains(expectedConfirmationmessage)) {
+    		Assert.assertTrue(true);
+    	}
+    	else {
+    		Assert.assertTrue(false);
+    	}
+    	
+        
+    }
+
+  
+
 }
