@@ -11,6 +11,7 @@ import io.cucumber.junit.CucumberOptions;
 		glue= "StepDefinition",
 		dryRun=false,
 		monochrome=true,
+		tags="@Regression",
 		plugin= {"pretty","junit:target/Cucumber-reports/reports1_xml.xml",
 				"pretty","html:target/Cucumber-reports/reports1.html",
 				"json:target/Cucumber-reports/reports1_json.json"}

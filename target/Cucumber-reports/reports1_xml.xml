@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="17.184" tests="1" skipped="0" failures="1" errors="0" timestamp="2025-09-30T18:45:47.359305400Z">
-<testcase classname="Customers" name="Add New Customer" time="16.841">
-<failure/>
+<testsuite name="Cucumber" time="18.598" tests="2" skipped="0" failures="2" errors="0" timestamp="2025-10-02T16:55:42.882091Z">
+<testcase classname="Customers" name="Search Customer by Email" time="10.024">
+<failure type="java.lang.IllegalArgumentException" message="Keys to send should be a not null CharSequence">
+<![CDATA[java.lang.IllegalArgumentException: Keys to send should be a not null CharSequence
+	at org.openqa.selenium.remote.RemoteWebElement.sendKeys(RemoteWebElement.java:96)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:51)
+	at jdk.proxy2/jdk.proxy2.$Proxy19.sendKeys(Unknown Source)
+	at PageObject.SearchCustomerPage.enterEmailAdd(SearchCustomerPage.java:48)
+	at StepDefinition.StepDef.enter_customer_e_mail(StepDef.java:127)
+	at ✽.Enter customer EMail(file:///C:/Users/DELL/Documents/MyCucumberFrameWork/./Features/Customers.feature:24)
+]]>
+</failure>
 <system-out><![CDATA[
 Given User Launch Chrome browser............................................passed
 When User open URL "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F".passed
@@ -10,12 +21,32 @@ And click on login button...................................................pass
 Then User can view Dashboard................................................passed
 When User click on customers Menu...........................................passed
 And click on customers Menu Item............................................passed
-And click on Add new Button.................................................passed
-Then User can view Add new customers page...................................passed
-When user enter customer info...............................................passed
-And click on save button....................................................passed
-Then User can view confirmation message "The new customer has been added successfully.".passed
-And close browser...........................................................undefined
+And Enter customer EMail....................................................failed
+When Click on search button.................................................skipped
+Then User should found Email in the Search table............................skipped
+And close browser...........................................................skipped
+]]></system-out>
+</testcase>
+<testcase classname="Customers" name="Search Customer by Name" time="8.287">
+<failure type="java.lang.NullPointerException" message="Cannot invoke &quot;String.split(String)&quot; because &quot;StepDefinition.StepDef.generatedName&quot; is null">
+<![CDATA[java.lang.NullPointerException: Cannot invoke "String.split(String)" because "StepDefinition.StepDef.generatedName" is null
+	at StepDefinition.StepDef.enter_customer_first_name(StepDef.java:148)
+	at ✽.Enter customer FirstName(file:///C:/Users/DELL/Documents/MyCucumberFrameWork/./Features/Customers.feature:33)
+]]>
+</failure>
+<system-out><![CDATA[
+Given User Launch Chrome browser............................................passed
+When User open URL "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F".passed
+And User enters Email as "admin@yourstore.com" and password as "admin"......passed
+And click on login button...................................................passed
+Then User can view Dashboard................................................passed
+When User click on customers Menu...........................................passed
+And click on customers Menu Item............................................passed
+And Enter customer FirstName................................................failed
+And Enter customer LastName.................................................skipped
+When Click on search button.................................................skipped
+Then User should found Name in the Search table.............................skipped
+And close browser...........................................................skipped
 ]]></system-out>
 </testcase>
 </testsuite>
