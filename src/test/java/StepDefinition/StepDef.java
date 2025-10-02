@@ -12,21 +12,26 @@ import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import PageObject.AddNewCustomerPage;
 import PageObject.LoginPage;
+import PageObject.SearchCustomerPage;
 
 import java.time.Duration;
+import java.util.UUID;
 
 public class StepDef {
     
     public WebDriver driver;
     public LoginPage loginpage;
-    public  AddNewCustomerPage addnewCustp;
+    public AddNewCustomerPage addnewCustp;
+    public SearchCustomerPage SearchCustPg;
     
     @Given("User Launch Chrome browser")
     public void user_launch_chrome_browser() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Add implicit wait
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         loginpage = new LoginPage(driver);
+        SearchCustPg = new SearchCustomerPage(driver);
+        addnewCustp = new AddNewCustomerPage(driver);
     }
 
     @When("User open URL {string}")
@@ -42,8 +47,6 @@ public class StepDef {
 
     @When("click on login button")
     public void click_on_login_button() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-       // Wait for button
         loginpage.clickLoginButton();
     }
 
@@ -55,12 +58,10 @@ public class StepDef {
 
     @When("User Click on Log out Link")
     public void user_click_on_log_out_link() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-      // Wait for logout link
-        loginpage.clickLoginButton();
+        loginpage.clickLogoutButton();
     }
 
-    @Then("close Browser")
+    @Then("close browser")
     public void close_browser() {
         driver.quit();
     }
@@ -68,80 +69,94 @@ public class StepDef {
     ///////////////Add new Customer////////////////
     @Then("User can view Dashboard")
     public void user_can_view_dashboard() {
-    	 addnewCustp = new AddNewCustomerPage(driver);
-    	String ActualTitle=addnewCustp.getPageTitle();
-    	String expectedTitle="Dashboard / nopCommerce administration";
-    	if(ActualTitle.equalsIgnoreCase(expectedTitle)) {
-    		Assert.assertTrue(true);
-    	}
-    	else {
-    		Assert.assertTrue(false);
-    	}
+        String actualTitle = addnewCustp.getPageTitle();
+        String expectedTitle = "Dashboard / nopCommerce administration";
+        Assert.assertEquals("Dashboard title mismatch", expectedTitle, actualTitle);
     }
-
 
     @When("User click on customers Menu")
     public void user_click_on_customers_menu() {
-    	addnewCustp.clickOnCustomersMenu();
+        addnewCustp.clickOnCustomersMenu();
     }
 
     @When("click on customers Menu Item")
     public void click_on_customers_menu_item() {
-    	addnewCustp.clickOnCustomersMenuItem();
+        addnewCustp.clickOnCustomersMenuItem();
     }
 
     @When("click on Add new Button")
     public void click_on_add_new_button() {
-    	addnewCustp.clickOnAddnew();
+        addnewCustp.clickOnAddnew();
     }
 
     @Then("User can view Add new customers page")
     public void user_can_view_add_new_customers_page() {
-    	String ActualTitle=addnewCustp.getPageTitle();
-    	String expectedTitle="Add a new customer / nopCommerce administration";
-    	if(ActualTitle.equalsIgnoreCase(expectedTitle)) {
-    		Assert.assertTrue(true);
-    	}
-    	else {
-    		Assert.assertTrue(false);
-    	}
+        String actualTitle = addnewCustp.getPageTitle();
+        String expectedTitle = "Add a new customer / nopCommerce administration";
+        Assert.assertEquals("Add new customer page title mismatch", expectedTitle, actualTitle);
     }
 
     @When("user enter customer info")
     public void user_enter_customer_info() {
-    	addnewCustp.enterEmail("cs129@gmail.com");
-    	//addnewCustp.enterEmail(generateEmailId() + "@gmail.com");
-    	addnewCustp.enterPassword("test1");
-    	addnewCustp.enterFirstName("Ujjwal");
-    	addnewCustp.enterLastName("Tyagi");
-    	addnewCustp.enterGender("Male");
-    	//addnewCustp.enterDob("6/13/1988");
-    	addnewCustp.enterCompanyName("Selenium with java");
-    	addnewCustp.enterAdminContent("Admin content");
-    	addnewCustp.enterManagerOfVendor("Vendor 1");
+        String uniqueId = UUID.randomUUID().toString().substring(0, 8); // Generate a unique ID
+        String uniqueEmail = "customer_" + uniqueId + "@test.com";
+        String uniqueFirstName = "Ujjwal_" + uniqueId;
+        String uniqueLastName = "Tyagi_" + uniqueId;
+        String uniqueCompanyName = "SeleniumJava_" + uniqueId;
 
-    
+        addnewCustp.setEmail(uniqueEmail);
+        addnewCustp.setPassword("test1");
+        addnewCustp.setFirstName(uniqueFirstName);
+        addnewCustp.setLastName(uniqueLastName);
+        addnewCustp.setGender("Male");
+        addnewCustp.setCompanyName(uniqueCompanyName);
     }
 
     @When("click on save button")
     public void click_on_save_button() {
-    	addnewCustp.clickOnSave();
-       
+        addnewCustp.clickOnSave();
     }
 
     @Then("User can view confirmation message {string}")
-    public void user_can_view_confirmation_message(String expectedConfirmationmessage) {
-    	String bodytagText= driver.findElement(By.tagName("Body")).getText();
-    	if(bodytagText.contains(expectedConfirmationmessage)) {
-    		Assert.assertTrue(true);
-    	}
-    	else {
-    		Assert.assertTrue(false);
-    	}
-    	
-        
+    public void user_can_view_confirmation_message(String expectedConfirmationMessage) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'alert-success')]")));
+        String bodyTagText = driver.findElement(By.tagName("body")).getText();
+        Assert.assertTrue("Confirmation message not found!", bodyTagText.contains(expectedConfirmationMessage));
     }
 
-  
+    /////Search Customer////
+    @When("Enter customer EMail")
+    public void enter_customer_e_mail() {
+        SearchCustPg.enterEmailAdd("cs129@gmail.com");
+    }
 
+    @When("Click on search button")
+    public void click_on_search_button() {
+        SearchCustPg.clickOnSearchButton();
+    }
+
+    @Then("User should found Email in the Search table")
+    public void user_should_found_email_in_the_search_table() {
+        String expectedEmail = "cs129@gmail.com";
+        boolean status = SearchCustPg.searchCustomerByEmail(expectedEmail);
+        Assert.assertTrue("Email not found in the search table!", status);
+    }
+    
+    @When("Enter customer FirstName")
+    public void enter_customer_first_name() {
+        SearchCustPg.enterFirstName("Ujjwal");
+    }
+
+    @When("Enter customer LastName")
+    public void enter_customer_last_name() {
+        SearchCustPg.enterLastName("Tyagi");
+    }
+
+    @Then("User should found Name in the Search table")
+    public void user_should_found_name_in_the_search_table() {
+        String expectedName = "Ujjwal Tyagi";
+        boolean status = SearchCustPg.searchCustomerByName(expectedName);
+        Assert.assertTrue("Name not found in the search table!", status);
+    }
 }
