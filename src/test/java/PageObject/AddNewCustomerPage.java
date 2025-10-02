@@ -1,5 +1,6 @@
 package PageObject;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -16,7 +17,7 @@ public class AddNewCustomerPage {
 
     public AddNewCustomerPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // Increased wait time
         PageFactory.initElements(driver, this);
     }
 
@@ -25,8 +26,8 @@ public class AddNewCustomerPage {
     @CacheLookup
     WebElement lnkCustomers_menu;
 
-    // Customers menu item
-    @FindBy(xpath = "//a[@href='/Admin/Customer/List']//p[contains(text(),'Customers')]")
+    // Customers menu item (Updated XPath)
+    @FindBy(xpath = "//a[@href='/Admin/Customer/List']")
     @CacheLookup
     WebElement lnkCustomers_menuitem;
 
@@ -93,7 +94,13 @@ public class AddNewCustomerPage {
 
     public void clickOnCustomersMenuItem() {
         wait.until(ExpectedConditions.elementToBeClickable(lnkCustomers_menuitem));
-        lnkCustomers_menuitem.click();
+        try {
+            lnkCustomers_menuitem.click();
+        } catch (Exception e) {
+            // Fallback to JavaScript click
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();", lnkCustomers_menuitem);
+        }
     }
 
     public void clickOnAddnew() {

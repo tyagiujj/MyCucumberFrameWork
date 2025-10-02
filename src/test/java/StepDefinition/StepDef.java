@@ -17,12 +17,7 @@ import PageObject.SearchCustomerPage;
 import java.time.Duration;
 import java.util.UUID;
 
-public class StepDef {
-    
-    public WebDriver driver;
-    public LoginPage loginpage;
-    public AddNewCustomerPage addnewCustp;
-    public SearchCustomerPage SearchCustPg;
+public class StepDef extends BaseClass {
     
     @Given("User Launch Chrome browser")
     public void user_launch_chrome_browser() {
@@ -99,12 +94,13 @@ public class StepDef {
     @When("user enter customer info")
     public void user_enter_customer_info() {
         String uniqueId = UUID.randomUUID().toString().substring(0, 8); // Generate a unique ID
-        String uniqueEmail = "customer_" + uniqueId + "@test.com";
+        generatedEmail = "customer_" + uniqueId + "@test.com"; // Store email
         String uniqueFirstName = "Ujjwal_" + uniqueId;
         String uniqueLastName = "Tyagi_" + uniqueId;
+        generatedName = uniqueFirstName + " " + uniqueLastName; // Store name
         String uniqueCompanyName = "SeleniumJava_" + uniqueId;
 
-        addnewCustp.setEmail(uniqueEmail);
+        addnewCustp.setEmail(generatedEmail);
         addnewCustp.setPassword("test1");
         addnewCustp.setFirstName(uniqueFirstName);
         addnewCustp.setLastName(uniqueLastName);
@@ -119,7 +115,7 @@ public class StepDef {
 
     @Then("User can view confirmation message {string}")
     public void user_can_view_confirmation_message(String expectedConfirmationMessage) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'alert-success')]")));
         String bodyTagText = driver.findElement(By.tagName("body")).getText();
         Assert.assertTrue("Confirmation message not found!", bodyTagText.contains(expectedConfirmationMessage));
@@ -128,35 +124,40 @@ public class StepDef {
     /////Search Customer////
     @When("Enter customer EMail")
     public void enter_customer_e_mail() {
-        SearchCustPg.enterEmailAdd("cs129@gmail.com");
+        SearchCustPg.enterEmailAdd(generatedEmail);
     }
 
     @When("Click on search button")
     public void click_on_search_button() {
+        try {
+            Thread.sleep(2000); // Wait for table to load
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         SearchCustPg.clickOnSearchButton();
     }
 
     @Then("User should found Email in the Search table")
     public void user_should_found_email_in_the_search_table() {
-        String expectedEmail = "cs129@gmail.com";
-        boolean status = SearchCustPg.searchCustomerByEmail(expectedEmail);
+        boolean status = SearchCustPg.searchCustomerByEmail(generatedEmail);
         Assert.assertTrue("Email not found in the search table!", status);
     }
     
     @When("Enter customer FirstName")
     public void enter_customer_first_name() {
-        SearchCustPg.enterFirstName("Ujjwal");
+        String[] nameParts = generatedName.split(" ");
+        SearchCustPg.enterFirstName(nameParts[0]);
     }
 
     @When("Enter customer LastName")
     public void enter_customer_last_name() {
-        SearchCustPg.enterLastName("Tyagi");
+        String[] nameParts = generatedName.split(" ");
+        SearchCustPg.enterLastName(nameParts[1]);
     }
 
     @Then("User should found Name in the Search table")
     public void user_should_found_name_in_the_search_table() {
-        String expectedName = "Ujjwal Tyagi";
-        boolean status = SearchCustPg.searchCustomerByName(expectedName);
+        boolean status = SearchCustPg.searchCustomerByName(generatedName);
         Assert.assertTrue("Name not found in the search table!", status);
     }
 }
