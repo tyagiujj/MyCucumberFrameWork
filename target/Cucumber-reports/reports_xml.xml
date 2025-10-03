@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="76.713" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-10-03T16:41:12.319042700Z">
+<testcase classname="Customers" name="Add New Customer" time="37.233">
+<system-out><![CDATA[
+Given User Launch Chrome browser............................................passed
+When User open URL "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F".passed
+And User enters Email as "admin@yourstore.com" and password as "admin"......passed
+And click on login button...................................................passed
+Then User can view Dashboard................................................passed
+When User click on customers Menu...........................................passed
+And click on customers Menu Item............................................passed
+And click on Add new Button.................................................passed
+Then User can view Add new customers page...................................passed
+When user enter customer info...............................................passed
+And click on save button....................................................passed
+Then User can view confirmation message "The new customer has been added successfully.".passed
+]]></system-out>
+</testcase>
+<testcase classname="Customers" name="Search Customer by Email" time="10.24">
+<system-out><![CDATA[
+Given User Launch Chrome browser............................................passed
+When User open URL "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F".passed
+And User enters Email as "admin@yourstore.com" and password as "admin"......passed
+And click on login button...................................................passed
+Then User can view Dashboard................................................passed
+When User click on customers Menu...........................................passed
+And click on customers Menu Item............................................passed
+And Enter customer EMail....................................................passed
+When Click on search button.................................................passed
+Then User should found Email in the Search table............................passed
+]]></system-out>
+</testcase>
+<testcase classname="Customers" name="Search Customer by Name" time="10.205">
+<system-out><![CDATA[
+Given User Launch Chrome browser............................................passed
+When User open URL "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F".passed
+And User enters Email as "admin@yourstore.com" and password as "admin"......passed
+And click on login button...................................................passed
+Then User can view Dashboard................................................passed
+When User click on customers Menu...........................................passed
+And click on customers Menu Item............................................passed
+And Enter customer FirstName................................................passed
+And Enter customer LastName.................................................passed
+When Click on search button.................................................passed
+Then User should found Name in the Search table.............................passed
+]]></system-out>
+</testcase>
+<testcase classname="Login Functionality" name="Successful login with valid credentials" time="9.243">
+<system-out><![CDATA[
+Given User Launch Chrome browser............................................passed
+When User open URL "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F".passed
+And User enters Email as "admin@yourstore.com" and password as "admin"......passed
+And click on login button...................................................passed
+Then Page Title Should be "Dashboard / nopCommerce administration"..........passed
+When User Click on Log out Link.............................................passed
+Then Page Title Should be "nopCommerce demo store. Login"...................passed
+]]></system-out>
+</testcase>
+<testcase classname="Login Functionality" name="Successful Login with Valid Credentials DDT - #1.1" time="9.45">
+<system-out><![CDATA[
+Given User Launch Chrome browser............................................passed
+When User open URL "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F".passed
+And User enters Email as "admin@yourstore.com" and password as "admin"......passed
+And click on login button...................................................passed
+Then Page Title Should be "Dashboard / nopCommerce administration"..........passed
+When User Click on Log out Link.............................................passed
+Then Page Title Should be "nopCommerce demo store. Login"...................passed
+]]></system-out>
+</testcase>
+</testsuite>
+s(StepDef.java:65)
+	at ✽.User enters Email as "admin@yourstore.com" and password as "admin"(file:///C:/Users/DELL/Documents/MyCucumberFrameWork/./Features/Customers.feature:6)
+]]>
+</failure>
+<system-out><![CDATA[
+Given User Launch Chrome browser............................................passed
+When User open URL "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F".passed
+And User enters Email as "admin@yourstore.com" and password as "admin"......failed
+And click on login button...................................................skipped
+Then User can view Dashboard................................................skipped
+When User click on customers Menu...........................................skipped
+And click on customers Menu Item............................................skipped
+And click on Add new Button.................................................skipped
+Then User can view Add new customers page...................................skipped
+When user enter customer info...............................................skipped
+And click on save button....................................................skipped
+Then User can view confirmation message "The new customer has been added successfully.".skipped
+]]></system-out>
+</testcase>
+<testcase classname="Customers" name="Search Customer by Email" time="32.874">
+<failure type="java.lang.IllegalArgumentException" message="Keys to send should be a not null CharSequence">
+<![CDATA[java.lang.IllegalArgumentException: Keys to send should be a not null CharSequence
+	at org.openqa.selenium.remote.RemoteWebElement.sendKeys(RemoteWebElement.java:96)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:51)
+	at jdk.proxy2/jdk.proxy2.$Proxy32.sendKeys(Unknown Source)
+	at PageObject.SearchCustomerPage.enterEmailAdd(SearchCustomerPage.java:48)
+	at StepDefinition.StepDef.enter_customer_e_mail(StepDef.java:166)
+	at ✽.Enter customer EMail(file:///C:/Users/DELL/Documents/MyCucumberFrameWork/./Features/Customers.feature:23)
+]]>
+</failure>
+<system-out><![CDATA[
+Given User Launch Chrome browser............................................passed
+When User open URL "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F".passed
+And User enters Email as "admin@yourstore.com" and password as "admin"......passed
+And click on login button...................................................passed
+Then User can view Dashboard................................................passed
+When User click on customers Menu...........................................passed
+And click on customers Menu Item............................................passed
+And Enter customer EMail....................................................failed
+When Click on search button.................................................skipped
+Then User should found Email in the Search table............................skipped
+]]></system-out>
+</testcase>
+<testcase classname="Customers" name="Search Customer by Name" time="9.621">
+<failure type="java.lang.NullPointerException" message="Cannot invoke &quot;String.split(String)&quot; because &quot;StepDefinition.StepDef.generatedName&quot; is null">
+<![CDATA[java.lang.NullPointerException: Cannot invoke "String.split(String)" because "StepDefinition.StepDef.generatedName" is null
+	at StepDefinition.StepDef.enter_customer_first_name(StepDef.java:187)
+	at ✽.Enter customer FirstName(file:///C:/Users/DELL/Documents/MyCucumberFrameWork/./Features/Customers.feature:31)
+]]>
+</failure>
+<system-out><![CDATA[
+Given User Launch Chrome browser............................................passed
+When User open URL "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F".passed
+And User enters Email as "admin@yourstore.com" and password as "admin"......passed
+And click on login button...................................................passed
+Then User can view Dashboard................................................passed
+When User click on customers Menu...........................................passed
+And click on customers Menu Item............................................passed
+And Enter customer FirstName................................................failed
+And Enter customer LastName.................................................skipped
+When Click on search button.................................................skipped
+Then User should found Name in the Search table.............................skipped
+]]></system-out>
+</testcase>
+<testcase classname="Login Functionality" name="Successful login with valid credentials" time="9.627">
+<failure type="org.openqa.selenium.ElementClickInterceptedException" message="element click intercepted: Element &lt;a class=&quot;nav-link&quot; href=&quot;/logout&quot;&gt;...&lt;/a&gt; is not clickable at point (914, 28). Other element would receive the click: &lt;div id=&quot;ajaxBusy&quot; style=&quot;display: block;&quot;&gt;...&lt;/div&gt;
+  (Session info: chrome=140.0.7339.208)
+Build info: version: '4.35.0', revision: '1c58e5028b'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.7'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [511edd39cde832e790d5b0ef364cd86c, clickElement {id=f.5F91ABEB93676D508FD3A61FA94F9963.d.842D1B6314919D8648DA04DA6D5BEB82.e.20}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 140.0.7339.208, chrome: {chromedriverVersion: 140.0.7339.207 (17230b545fd..., userDataDir: C:\Users\DELL\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52303}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52303/devtoo..., se:cdpVersion: 140.0.7339.208, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (511edd39cde832e790d5b0ef364cd86c)] -&gt; xpath: //a[@href='/logout']]
+Session ID: 511edd39cde832e790d5b0ef364cd86c">
+<![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <a class="nav-link" href="/logout">...</a> is not clickable at point (914, 28). Other element would receive the click: <div id="ajaxBusy" style="display: block;">...</div>
+  (Session info: chrome=140.0.7339.208)
+Build info: version: '4.35.0', revision: '1c58e5028b'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.7'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [511edd39cde832e790d5b0ef364cd86c, clickElement {id=f.5F91ABEB93676D508FD3A61FA94F9963.d.842D1B6314919D8648DA04DA6D5BEB82.e.20}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 140.0.7339.208, chrome: {chromedriverVersion: 140.0.7339.207 (17230b545fd..., userDataDir: C:\Users\DELL\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52303}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52303/devtoo..., se:cdpVersion: 140.0.7339.208, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (511edd39cde832e790d5b0ef364cd86c)] -> xpath: //a[@href='/logout']]
+Session ID: 511edd39cde832e790d5b0ef364cd86c
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:557)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:76)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:51)
+	at jdk.proxy2/jdk.proxy2.$Proxy32.click(Unknown Source)
+	at PageObject.LoginPage.clickLogoutButton(LoginPage.java:56)
+	at StepDefinition.StepDef.user_click_on_log_out_link(StepDef.java:85)
+	at ✽.User Click on Log out Link(file:///C:/Users/DELL/Documents/MyCucumberFrameWork/./Features/LoginFeature.feature:12)
+]]>
+</failure>
+<system-out><![CDATA[
+Given User Launch Chrome browser............................................passed
+When User open URL "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F".passed
+And User enters Email as "admin@yourstore.com" and password as "admin"......passed
+And click on login button...................................................passed
+Then Page Title Should be "Dashboard / nopCommerce administration"..........passed
+When User Click on Log out Link.............................................failed
+Then Page Title Should be "nopCommerce demo store. Login"...................skipped
+]]></system-out>
+</testcase>
+<testcase classname="Login Functionality" name="Successful Login with Valid Credentials DDT - #1.1" time="10.535">
+<failure type="org.openqa.selenium.ElementClickInterceptedException" message="element click intercepted: Element &lt;a class=&quot;nav-link&quot; href=&quot;/logout&quot;&gt;...&lt;/a&gt; is not clickable at point (914, 28). Other element would receive the click: &lt;div id=&quot;ajaxBusy&quot; style=&quot;display: block;&quot;&gt;...&lt;/div&gt;
+  (Session info: chrome=140.0.7339.208)
+Build info: version: '4.35.0', revision: '1c58e5028b'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.7'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [06ab4efd8f0d458734e3d9391485084e, clickElement {id=f.4036BA84D6C0FDC9499716F32567CDC2.d.A15977F9609D3DF54E346585FE850791.e.24}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 140.0.7339.208, chrome: {chromedriverVersion: 140.0.7339.207 (17230b545fd..., userDataDir: C:\Users\DELL\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52354}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52354/devtoo..., se:cdpVersion: 140.0.7339.208, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (06ab4efd8f0d458734e3d9391485084e)] -&gt; xpath: //a[@href='/logout']]
+Session ID: 06ab4efd8f0d458734e3d9391485084e">
+<![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <a class="nav-link" href="/logout">...</a> is not clickable at point (914, 28). Other element would receive the click: <div id="ajaxBusy" style="display: block;">...</div>
+  (Session info: chrome=140.0.7339.208)
+Build info: version: '4.35.0', revision: '1c58e5028b'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.7'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [06ab4efd8f0d458734e3d9391485084e, clickElement {id=f.4036BA84D6C0FDC9499716F32567CDC2.d.A15977F9609D3DF54E346585FE850791.e.24}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 140.0.7339.208, chrome: {chromedriverVersion: 140.0.7339.207 (17230b545fd..., userDataDir: C:\Users\DELL\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52354}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52354/devtoo..., se:cdpVersion: 140.0.7339.208, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (06ab4efd8f0d458734e3d9391485084e)] -> xpath: //a[@href='/logout']]
+Session ID: 06ab4efd8f0d458734e3d9391485084e
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:557)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:76)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:51)
+	at jdk.proxy2/jdk.proxy2.$Proxy32.click(Unknown Source)
+	at PageObject.LoginPage.clickLogoutButton(LoginPage.java:56)
+	at StepDefinition.StepDef.user_click_on_log_out_link(StepDef.java:85)
+	at ✽.User Click on Log out Link(file:///C:/Users/DELL/Documents/MyCucumberFrameWork/./Features/LoginFeature.feature:22)
+]]>
+</failure>
+<system-out><![CDATA[
+Given User Launch Chrome browser............................................passed
+When User open URL "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F".passed
+And User enters Email as "admin@yourstore.com" and password as "admin"......passed
+And click on login button...................................................passed
+Then Page Title Should be "Dashboard / nopCommerce administration"..........passed
+When User Click on Log out Link.............................................failed
+Then Page Title Should be "nopCommerce demo store. Login"...................skipped
+]]></system-out>
+</testcase>
+</testsuite>

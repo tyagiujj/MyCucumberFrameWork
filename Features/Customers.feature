@@ -15,8 +15,7 @@ Scenario: Add New Customer
     When user enter customer info
     And click on save button
     Then User can view confirmation message "The new customer has been added successfully."
-    And close browser
-    
+
 @Regression
 Scenario: Search Customer by Email
     When User click on customers Menu 
@@ -24,7 +23,6 @@ Scenario: Search Customer by Email
     And Enter customer EMail
     When Click on search button
     Then User should found Email in the Search table
-    And close browser 
     
 @Regression
 Scenario: Search Customer by Name
@@ -34,4 +32,3 @@ Scenario: Search Customer by Name
     And Enter customer LastName
     When Click on search button
     Then User should found Name in the Search table
-    And close browser
